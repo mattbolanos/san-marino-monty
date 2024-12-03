@@ -1,3 +1,20 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "rules": {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "import/no-unresolved": "error",
+    "import/named": 0,
+    "no-console": "error",
+    "no-var": "error",
+    "eqeqeq": "error",
+    "semi": ["error", "always"],
+    "no-duplicate-imports": "error",
+    "no-unreachable": "error",
+    "react/jsx-no-leaked-render": "error",
+    "prefer-const": "error"
+  }
 }
