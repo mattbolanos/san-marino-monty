@@ -14,7 +14,7 @@ const BuyMeACoffee = () => {
         size="sm"
         className="inline-flex items-center px-4 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-opacity-50"
       >
-        <Coffee className="mr-2 h-4 w-4" />
+        <Coffee className="mr-1 h-4 w-4" />
         Buy me a coffee
       </Button>
     </Link>
