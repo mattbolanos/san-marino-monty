@@ -5,3 +5,10 @@ export interface Tower {
   name: string;
   image: StaticImageData;
 }
+
+export type GameState =
+  | "initial"
+  | "climbing"
+  | "revealed"
+  | "final"
+  | "complete";
