@@ -1,29 +1,9 @@
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { GameState, type Tower } from "@/lib/types";
+import { GameState } from "@/lib/types";
 import Image from "next/image";
 import { Landmark } from "lucide-react";
-import guaitaLogo from "@/public/guaita.jpg";
-import cestaLogo from "@/public/cesta.jpg";
-import montaleLogo from "@/public/montale.jpg";
+import { TOWERS } from "@/app/constants";
 import { cn } from "@/lib/utils";
-
-export const TOWERS: Tower[] = [
-  {
-    id: 0,
-    name: "The Guaita",
-    image: guaitaLogo,
-  },
-  {
-    id: 1,
-    name: "The Cesta",
-    image: cestaLogo,
-  },
-  {
-    id: 2,
-    name: "The Montale",
-    image: montaleLogo,
-  },
-];
 
 interface TowerCardsProps {
   selectedTower: number | null;
@@ -72,6 +52,7 @@ export const TowerCards = ({
               width={300}
               height={300}
               className="w-full h-full object-cover"
+              priority
             />
           </CardContent>
         </Card>

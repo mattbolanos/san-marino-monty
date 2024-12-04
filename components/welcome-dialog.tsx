@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { CircleHelp } from "lucide-react";
+import { DIALOG_CONTENT_CLASS } from "@/app/constants";
 
 interface WelcomeDialogProps {
   open: boolean;
@@ -27,7 +28,11 @@ const rules = [
 const WelcomeContent = ({ open, onOpenChange }: WelcomeDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-11/12 max-w-lg sm:mx-8 mx-auto py-10 px-5 rounded-md">
+      <DialogContent
+        className={DIALOG_CONTENT_CLASS}
+        aria-describedby="welcome-dialog-content"
+        aria-description="Welcome dialog content"
+      >
         <DialogHeader>
           <DialogTitle className="sm:text-2xl text-lg font-bold sm:mb-4 mb-2">
             The San Marino Towers Challenge

@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import GameStatus from "./game-status";
-import { TOWERS, TowerCards } from "./tower-cards";
+import { TowerCards } from "./tower-cards";
 import { GameState } from "@/lib/types";
 import { Timer } from "./timer";
-
+import { TOWERS } from "@/app/constants";
 const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
   // per client request, Guaita is always the correct tower
