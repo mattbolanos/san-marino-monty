@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import BuyMeACoffee from "@/components/buy-me-coffee";
 import { cn } from "@/lib/utils";
 
 const Game = () => {
@@ -119,7 +120,7 @@ const Game = () => {
         </DialogContent>
       </Dialog>
       {gameState === "final" && (
-        <div className="inset-0 flex items-center justify-center z-50 pointer-events-none mb-10">
+        <div className="inset-0 flex items-center justify-center z-50  mb-10 flex-col gap-4">
           <h1
             className={cn(
               "text-4xl font-bold text-center",
@@ -128,6 +129,7 @@ const Game = () => {
           >
             {win ? "YOU WIN! 🎉" : "GAME OVER ❌"}
           </h1>
+          <BuyMeACoffee />
         </div>
       )}
       <TowerCards

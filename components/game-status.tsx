@@ -184,9 +184,7 @@ const GameStatus = ({
                   : "Whoops! Wrong choice! You can still finish this challenge if you get to the Guaita before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
-              {isCorrect ? (
-                "You picked the correct tower!"
-              ) : !consolationWin && timer > 0 ? (
+              {isCorrect ? null : !consolationWin && timer > 0 ? (
                 <>
                   Reach the top of the correct tower:
                   <strong className="text-primary">
