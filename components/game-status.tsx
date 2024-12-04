@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { type Tower } from "@/lib/types";
 import {
   Dialog,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { DIALOG_CONTENT_CLASS, DIALOG_FOOTER_CLASS } from "@/app/constants";
 import { cn } from "@/lib/utils";
+import { Timer } from "./timer";
 
 interface GameStatusProps {
   gameState: string;
@@ -26,6 +27,9 @@ interface GameStatusProps {
   handleClimbVerification: () => void;
   handleFinalClimbVerification: (_towerId: number) => void;
   onReset: () => void;
+  isTimerRunning: boolean;
+  timer: number;
+  setTimer: (_time: number) => void;
 }
 
 const GameStatus = ({
@@ -39,10 +43,15 @@ const GameStatus = ({
   handleClimbVerification,
   handleFinalClimbVerification,
   onReset,
+  isTimerRunning,
+  timer,
+  setTimer,
 }: GameStatusProps) => {
   // Dialog should be open when we have something to show
   const isDialogOpen =
     verificationNeeded || gameState === "revealed" || gameState === "final";
+
+  const [showPlayAgain, setShowPlayAgain] = React.useState(false);
 
   if (!isDialogOpen) return null;
 
@@ -130,23 +139,49 @@ const GameStatus = ({
       const isCorrect = selectedTower === correctTower;
       return (
         <Dialog open={true}>
-          <DialogContent className={DIALOG_CONTENT_CLASS}>
+          <DialogContent className={DIALOG_CONTENT_CLASS} hideClose>
             <DialogHeader>
-              <DialogTitle>
-                {isCorrect ? "Congratulations! 🎉" : "Wrong Tower! ⚠️"}
+              <DialogTitle
+                className={cn(
+                  "text-2xl -mt-5 mb-3",
+                  isCorrect ? "text-green-500" : "text-red-500"
+                )}
+              >
+                {isCorrect ? "Congratulations! 🎉" : "Wrong Tower!"}
               </DialogTitle>
-              <DialogDescription>
-                {isCorrect
-                  ? "You picked the correct tower!"
-                  : `Quick - you have 10 minutes to reach ${
-                      towers[correctTower!].name
-                    }!`}
-              </DialogDescription>
+
+              {isCorrect ? (
+                "You picked the correct tower!"
+              ) : (
+                <>
+                  Reach the top of the correct tower:
+                  <strong className="text-primary">
+                    {" "}
+                    {towers[correctTower!].name}
+                  </strong>
+                </>
+              )}
+              {isTimerRunning ? (
+                <Timer timeRemaining={timer} setTimeRemaining={setTimer} />
+              ) : null}
             </DialogHeader>
             <DialogFooter>
-              <Button onClick={onReset}>
-                Play Again <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              {isCorrect ? (
+                <Button onClick={onReset}>
+                  Play Again <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              ) : showPlayAgain ? (
+                <Button onClick={onReset}>
+                  Play Again <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => setShowPlayAgain(true)}
+                  variant="destructive"
+                >
+                  <Clock className="mr-0.5 h-4 w-4" />I Made It!
+                </Button>
+              )}
             </DialogFooter>
           </DialogContent>
         </Dialog>

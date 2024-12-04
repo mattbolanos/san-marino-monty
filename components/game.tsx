@@ -4,7 +4,6 @@ import * as React from "react";
 import GameStatus from "./game-status";
 import { TowerCards } from "./tower-cards";
 import { GameState } from "@/lib/types";
-import { Timer } from "./timer";
 import {
   DIALOG_CONTENT_CLASS,
   DIALOG_FOOTER_CLASS,
@@ -127,9 +126,6 @@ const Game = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      {isTimerRunning ? (
-        <Timer timeRemaining={timer} setTimeRemaining={setTimer} />
-      ) : null}
       <TowerCards
         selectedTower={selectedTower}
         revealedTower={revealedTower}
@@ -148,6 +144,9 @@ const Game = () => {
         handleClimbVerification={handleClimbVerification}
         handleFinalClimbVerification={handleFinalClimbVerification}
         onReset={resetGame}
+        isTimerRunning={isTimerRunning}
+        timer={timer}
+        setTimer={setTimer}
       />
     </>
   );
