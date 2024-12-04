@@ -32,6 +32,7 @@ const Game = () => {
   >(null);
   const [climbingVerificationNeeded, setClimbingVerificationNeeded] =
     React.useState<boolean>(false);
+  const [consolationWin, setConsolationWin] = React.useState(false);
 
   const handleInitialSelection = (towerId: number) => {
     setPendingTowerSelection(towerId);
@@ -90,6 +91,8 @@ const Game = () => {
     ) as number;
   };
 
+  const win = selectedTower === correctTower || consolationWin;
+
   return (
     <>
       <Dialog
@@ -120,10 +123,10 @@ const Game = () => {
           <h1
             className={cn(
               "text-4xl font-bold text-center",
-              selectedTower === correctTower ? "text-green-500" : "text-red-500"
+              win ? "text-green-500" : "text-red-500"
             )}
           >
-            {selectedTower === correctTower ? "YOU WIN! 🎉" : "GAME OVER ❌"}
+            {win ? "YOU WIN! 🎉" : "GAME OVER ❌"}
           </h1>
         </div>
       )}
@@ -148,6 +151,8 @@ const Game = () => {
         timer={timer}
         setTimer={setTimer}
         setIsTimerRunning={setIsTimerRunning}
+        consolationWin={consolationWin}
+        setConsolationWin={setConsolationWin}
       />
     </>
   );

@@ -33,6 +33,8 @@ interface GameStatusProps {
   timer: number;
   setTimer: (_time: number) => void;
   setIsTimerRunning: (_isTimerRunning: boolean) => void;
+  consolationWin: boolean;
+  setConsolationWin: (_consolationWin: boolean) => void;
 }
 
 const GameStatus = ({
@@ -49,11 +51,12 @@ const GameStatus = ({
   timer,
   setTimer,
   setIsTimerRunning,
+  consolationWin,
+  setConsolationWin,
 }: GameStatusProps) => {
   // Dialog should be open when we have something to show
   const isDialogOpen =
     verificationNeeded || gameState === "revealed" || gameState === "final";
-  const [consolationWin, setConsolationWin] = React.useState(false);
   const [finalDialogOpen, setFinalDialogOpen] = React.useState(true);
 
   const handleConsolationWin = () => {
