@@ -24,4 +24,4 @@ export const TOWERS: Tower[] = [
 export const DIALOG_CONTENT_CLASS =
   "w-10/12 max-w-lg sm:mx-8 mx-auto py-10 px-4 rounded-md pb-5";
 
-export const DIALOG_FOOTER_CLASS = "max-w-[250px] w-full mx-auto";
+export const DIALOG_FOOTER_CLASS = "";

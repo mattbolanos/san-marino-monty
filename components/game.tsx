@@ -4,11 +4,7 @@ import * as React from "react";
 import GameStatus from "./game-status";
 import { TowerCards } from "./tower-cards";
 import { GameState } from "@/lib/types";
-import {
-  DIALOG_CONTENT_CLASS,
-  DIALOG_FOOTER_CLASS,
-  TOWERS,
-} from "@/app/constants";
+import { DIALOG_CONTENT_CLASS, TOWERS } from "@/app/constants";
 import {
   Dialog,
   DialogContent,
@@ -18,7 +14,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
@@ -75,9 +70,13 @@ const Game = () => {
     setGameState("climbing");
   };
 
-  const handleFinalClimbVerification = (towerId: number) => {
+  const handleFinalClimbVerification = (
+    towerId: number,
+    action: "keep" | "switch"
+  ) => {
     setSelectedTower(towerId);
-    setClimbingVerificationNeeded(false);
+    setClimbingVerificationNeeded(action === "switch");
+
     setGameState("final");
     if (towerId !== correctTower) {
       setIsTimerRunning(true);
@@ -114,9 +113,7 @@ const Game = () => {
               Are you sure you want to select this tower?
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter
-            className={cn(DIALOG_FOOTER_CLASS, "flex justify-end gap-2")}
-          >
+          <DialogFooter className="flex justify-center items-center gap-2">
             <Button variant="outline" onClick={handleVerificationCancel}>
               Cancel
             </Button>

@@ -25,7 +25,10 @@ interface GameStatusProps {
   towers: Tower[];
   remainingTower: number;
   handleClimbVerification: () => void;
-  handleFinalClimbVerification: (_towerId: number) => void;
+  handleFinalClimbVerification: (
+    _towerId: number,
+    _action: "keep" | "switch"
+  ) => void;
   onReset: () => void;
   isTimerRunning: boolean;
   timer: number;
@@ -72,7 +75,10 @@ const GameStatus = ({
                   gameState === "climbing" && revealedTower === null
                     ? handleClimbVerification
                     : () =>
-                        handleFinalClimbVerification(towers[selectedTower!].id)
+                        handleFinalClimbVerification(
+                          towers[selectedTower!].id,
+                          "keep"
+                        )
                 }
                 variant="default"
               >
@@ -115,7 +121,10 @@ const GameStatus = ({
             >
               <Button
                 onClick={() =>
-                  handleFinalClimbVerification(towers[selectedTower!].id)
+                  handleFinalClimbVerification(
+                    towers[selectedTower!].id,
+                    "keep"
+                  )
                 }
                 variant="outline"
               >
@@ -123,7 +132,10 @@ const GameStatus = ({
               </Button>
               <Button
                 onClick={() =>
-                  handleFinalClimbVerification(towers[remainingTower].id)
+                  handleFinalClimbVerification(
+                    towers[remainingTower].id,
+                    "switch"
+                  )
                 }
                 variant="default"
               >
