@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
@@ -31,7 +32,6 @@ const Game = () => {
   >(null);
   const [climbingVerificationNeeded, setClimbingVerificationNeeded] =
     React.useState<boolean>(false);
-  const [win, setWin] = React.useState<boolean>(false);
 
   const handleInitialSelection = (towerId: number) => {
     setPendingTowerSelection(towerId);
@@ -115,6 +115,18 @@ const Game = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      {gameState === "final" && (
+        <div className="inset-0 flex items-center justify-center z-50 pointer-events-none mb-10">
+          <h1
+            className={cn(
+              "text-4xl font-bold text-center",
+              selectedTower === correctTower ? "text-green-500" : "text-red-500"
+            )}
+          >
+            {selectedTower === correctTower ? "YOU WIN! 🎉" : "GAME OVER ❌"}
+          </h1>
+        </div>
+      )}
       <TowerCards
         selectedTower={selectedTower}
         revealedTower={revealedTower}
@@ -136,7 +148,6 @@ const Game = () => {
         timer={timer}
         setTimer={setTimer}
         setIsTimerRunning={setIsTimerRunning}
-        setWin={setWin}
       />
     </>
   );

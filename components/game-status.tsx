@@ -33,7 +33,6 @@ interface GameStatusProps {
   timer: number;
   setTimer: (_time: number) => void;
   setIsTimerRunning: (_isTimerRunning: boolean) => void;
-  setWin: (_win: boolean) => void;
 }
 
 const GameStatus = ({

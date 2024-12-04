@@ -43,6 +43,7 @@ export const TowerCards = ({
               revealedTower === tower.id &&
               "opacity-50 cursor-not-allowed",
             !gameOver && "cursor-pointer",
+            gameOver && "cursor-not-allowed",
             !gameOver && selectedTower === tower.id && "ring-2 ring-chart-1"
           )}
           onClick={() => handleTowerClick(tower.id)}
