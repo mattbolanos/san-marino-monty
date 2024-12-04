@@ -1,7 +1,11 @@
 import TowerCards from "./tower-cards";
 
 const Game = () => {
-  return <TowerCards />;
+  return (
+    <>
+      <TowerCards />
+    </>
+  );
 };
 
 export default Game;

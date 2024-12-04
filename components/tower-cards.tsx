@@ -9,17 +9,17 @@ import montaleLogo from "@/public/montale.jpg";
 const TOWERS: Tower[] = [
   {
     id: 0,
-    name: "Guaita",
+    name: "The Guaita",
     image: guaitaLogo,
   },
   {
     id: 1,
-    name: "Cesta",
+    name: "The Cesta",
     image: cestaLogo,
   },
   {
     id: 2,
-    name: "Montale",
+    name: "The Montale",
     image: montaleLogo,
   },
 ];
