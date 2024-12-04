@@ -38,8 +38,9 @@ const WelcomeContent = ({ open, onOpenChange }: WelcomeDialogProps) => {
             The San Marino Towers Challenge
           </DialogTitle>
           <span className="text-muted-foreground sm:mb-4 mb-2 block sm:text-base text-sm">
-            This is a real-life version of the famous Monty Hall problem using
-            the Three Towers of San Marino.
+            Welcome to our game! This challenge is complete when you get to the
+            correct tower… but which one is it? Select a tower, then follow the
+            instructions
           </span>
         </DialogHeader>
 

@@ -113,7 +113,7 @@ const Game = () => {
               Are you sure you want to select this tower?
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="flex justify-center items-center gap-2">
+          <DialogFooter>
             <Button variant="outline" onClick={handleVerificationCancel}>
               Cancel
             </Button>

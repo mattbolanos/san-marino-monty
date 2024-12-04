@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { DIALOG_CONTENT_CLASS, DIALOG_FOOTER_CLASS } from "@/app/constants";
+import { DIALOG_CONTENT_CLASS } from "@/app/constants";
 import { cn } from "@/lib/utils";
 import { Timer } from "./timer";
 
@@ -69,7 +69,7 @@ const GameStatus = ({
                 Climb to the top of {towers[selectedTower!].name}!
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter className={DIALOG_FOOTER_CLASS}>
+            <DialogFooter>
               <Button
                 onClick={
                   gameState === "climbing" && revealedTower === null
@@ -116,9 +116,7 @@ const GameStatus = ({
               </p>
               <p>Would you like to:</p>
             </div>
-            <DialogFooter
-              className={cn(DIALOG_FOOTER_CLASS, "flex justify-center gap-4")}
-            >
+            <DialogFooter className="flex sm:justify-center">
               <Button
                 onClick={() =>
                   handleFinalClimbVerification(
@@ -159,7 +157,9 @@ const GameStatus = ({
                   isCorrect ? "text-green-500" : "text-red-500"
                 )}
               >
-                {isCorrect ? "Congratulations! 🎉" : "Wrong Tower!"}
+                {isCorrect
+                  ? "Congratulations! This was the correct tower. Challenge complete! 🎉"
+                  : "Whoops! Wrong choice! You can still finish this challenge if you get to the Guaita before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
               {isCorrect ? (
