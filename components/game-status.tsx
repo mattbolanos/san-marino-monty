@@ -35,6 +35,7 @@ interface GameStatusProps {
   setIsTimerRunning: (_isTimerRunning: boolean) => void;
   consolationWin: boolean;
   setConsolationWin: (_consolationWin: boolean) => void;
+  setShowFinalText: (_showFinalText: boolean) => void;
 }
 
 const GameStatus = ({
@@ -53,6 +54,7 @@ const GameStatus = ({
   setIsTimerRunning,
   consolationWin,
   setConsolationWin,
+  setShowFinalText,
 }: GameStatusProps) => {
   // Dialog should be open when we have something to show
   const isDialogOpen =
@@ -159,7 +161,13 @@ const GameStatus = ({
       const isCorrect = selectedTower === correctTower;
       const canCloseDialog = isCorrect || consolationWin || timer === 0;
       return (
-        <Dialog open={finalDialogOpen} onOpenChange={setFinalDialogOpen}>
+        <Dialog
+          open={finalDialogOpen}
+          onOpenChange={(open) => {
+            setFinalDialogOpen(open);
+            setShowFinalText(true);
+          }}
+        >
           <DialogContent
             className={DIALOG_CONTENT_CLASS}
             hideClose={!canCloseDialog}

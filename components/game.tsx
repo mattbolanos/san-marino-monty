@@ -34,6 +34,7 @@ const Game = () => {
   const [climbingVerificationNeeded, setClimbingVerificationNeeded] =
     React.useState<boolean>(false);
   const [consolationWin, setConsolationWin] = React.useState(false);
+  const [showFinalText, setShowFinalText] = React.useState(false);
 
   const handleInitialSelection = (towerId: number) => {
     setPendingTowerSelection(towerId);
@@ -119,7 +120,7 @@ const Game = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      {gameState === "final" && (
+      {showFinalText ? (
         <div className="inset-0 flex items-center justify-center z-50  mb-10 flex-col gap-4">
           <h1
             className={cn(
@@ -131,7 +132,7 @@ const Game = () => {
           </h1>
           <BuyMeACoffee />
         </div>
-      )}
+      ) : null}
       <TowerCards
         selectedTower={selectedTower}
         revealedTower={revealedTower}
@@ -155,6 +156,7 @@ const Game = () => {
         setIsTimerRunning={setIsTimerRunning}
         consolationWin={consolationWin}
         setConsolationWin={setConsolationWin}
+        setShowFinalText={setShowFinalText}
       />
     </>
   );

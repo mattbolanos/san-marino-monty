@@ -3,7 +3,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 import { Clock } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TimerProps {
   timeRemaining: number;
@@ -23,9 +23,23 @@ export function Timer({
   });
 
   useEffect(() => {
+    let lastTick = Date.now();
     const interval = setInterval(() => {
-      setTimeRemaining(Math.max(0, timeRemaining - 1));
-    }, 1000);
+      const now = Date.now();
+      const delta = Math.floor((now - lastTick) / 1000);
+
+      if (delta >= 1) {
+        setTimeRemaining(Math.max(0, timeRemaining - delta));
+        lastTick = now;
+      }
+    }, 100);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        lastTick = Date.now();
+      }
+    });
+
     return () => clearInterval(interval);
   }, [timeRemaining, setTimeRemaining]);
 
