@@ -10,6 +10,7 @@ const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
   // per client request, Guaita is always the correct tower
   const correctTower: number = 0;
+
   const [selectedTower, setSelectedTower] = React.useState<number | null>(null);
   const [revealedTower, setRevealedTower] = React.useState<number | null>(null);
   const [isTimerRunning, setIsTimerRunning] = React.useState<boolean>(false);
@@ -41,10 +42,11 @@ const Game = () => {
     setGameState("climbing");
   };
 
-  const handleFinalClimbVerification = () => {
+  const handleFinalClimbVerification = (towerId: number) => {
+    setSelectedTower(towerId);
     setClimbingVerificationNeeded(false);
     setGameState("final");
-    if (selectedTower !== correctTower) {
+    if (towerId !== correctTower) {
       setIsTimerRunning(true);
     }
   };
@@ -84,8 +86,8 @@ const Game = () => {
         revealedTower={revealedTower}
         correctTower={correctTower}
         remainingTower={getRemainingTower()}
-        onVerifyClimb={handleClimbVerification}
-        onVerifyFinalClimb={handleFinalClimbVerification}
+        handleClimbVerification={handleClimbVerification}
+        handleFinalClimbVerification={handleFinalClimbVerification}
         onReset={resetGame}
       />
     </>

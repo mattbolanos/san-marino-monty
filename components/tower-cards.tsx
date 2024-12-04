@@ -46,14 +46,15 @@ export const TowerCards = ({
     else if (gameState === "revealed") onFinalSelect(towerId);
   };
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-1">
       {TOWERS.map((tower) => (
         <Card
           key={tower.id}
           className={cn(
-            "hover:scale-105 transition-all",
+            selectedTower === null && "hover:ring-2 hover:ring-chart-1/50",
+            "transition-all",
             revealedTower === tower.id && "opacity-50 cursor-not-allowed",
-            selectedTower === tower.id && "ring-2 ring-primary",
+            selectedTower === tower.id && "ring-2 ring-chart-1",
             "cursor-pointer"
           )}
           onClick={() => handleTowerClick(tower.id)}

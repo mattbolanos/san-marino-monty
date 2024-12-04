@@ -12,8 +12,8 @@ interface GameStatusProps {
   correctTower: number | null;
   towers: Tower[];
   remainingTower: number;
-  onVerifyClimb: () => void;
-  onVerifyFinalClimb: () => void;
+  handleClimbVerification: () => void;
+  handleFinalClimbVerification: (_towerId: number) => void;
   onReset: () => void;
 }
 
@@ -25,8 +25,8 @@ const GameStatus = ({
   correctTower,
   towers,
   remainingTower,
-  onVerifyClimb,
-  onVerifyFinalClimb,
+  handleClimbVerification,
+  handleFinalClimbVerification,
   onReset,
 }: GameStatusProps) => {
   if (verificationNeeded) {
@@ -38,8 +38,8 @@ const GameStatus = ({
         <Button
           onClick={
             gameState === "climbing" && revealedTower === null
-              ? onVerifyClimb
-              : onVerifyFinalClimb
+              ? handleClimbVerification
+              : () => handleFinalClimbVerification(towers[selectedTower!].id)
           }
           variant="default"
         >
@@ -53,17 +53,27 @@ const GameStatus = ({
     return (
       <div className="text-center space-y-4">
         <h2 className="text-2xl font-semibold">
-          Tower {towers[revealedTower!].name} is not the correct one!
+          {towers[revealedTower!].name} is not the correct tower.
         </h2>
         <p className="text-lg">
           Do you want to stick with {towers[selectedTower!].name} or switch to{" "}
           {towers[remainingTower].name}?
         </p>
         <div className="flex justify-center gap-4">
-          <Button onClick={() => onVerifyFinalClimb()} variant="outline">
+          <Button
+            onClick={() =>
+              handleFinalClimbVerification(towers[selectedTower!].id)
+            }
+            variant="outline"
+          >
             Stick with {towers[selectedTower!].name}
           </Button>
-          <Button onClick={() => onVerifyFinalClimb()} variant="default">
+          <Button
+            onClick={() =>
+              handleFinalClimbVerification(towers[remainingTower].id)
+            }
+            variant="default"
+          >
             Switch to {towers[remainingTower].name}
           </Button>
         </div>
