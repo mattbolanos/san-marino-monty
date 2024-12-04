@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import { type Tower } from "@/lib/types";
 import {
   Dialog,
@@ -29,10 +29,10 @@ interface GameStatusProps {
     _towerId: number,
     _action: "keep" | "switch"
   ) => void;
-  onReset: () => void;
   isTimerRunning: boolean;
   timer: number;
   setTimer: (_time: number) => void;
+  setIsTimerRunning: (_isTimerRunning: boolean) => void;
 }
 
 const GameStatus = ({
@@ -45,16 +45,22 @@ const GameStatus = ({
   remainingTower,
   handleClimbVerification,
   handleFinalClimbVerification,
-  onReset,
   isTimerRunning,
   timer,
   setTimer,
+  setIsTimerRunning,
 }: GameStatusProps) => {
   // Dialog should be open when we have something to show
   const isDialogOpen =
     verificationNeeded || gameState === "revealed" || gameState === "final";
+  const [consolationWin, setConsolationWin] = React.useState(false);
 
-  const [showPlayAgain, setShowPlayAgain] = React.useState(false);
+  const handleConsolationWin = () => {
+    if (timer > 0) {
+      setConsolationWin(true);
+    }
+    setIsTimerRunning(false);
+  };
 
   if (!isDialogOpen) return null;
 
@@ -154,17 +160,23 @@ const GameStatus = ({
               <DialogTitle
                 className={cn(
                   "text-2xl -mt-5 mb-3",
-                  isCorrect ? "text-green-500" : "text-red-500"
+                  isCorrect
+                    ? "text-green-500"
+                    : consolationWin
+                    ? "text-yellow-500"
+                    : "text-red-500"
                 )}
               >
                 {isCorrect
                   ? "Congratulations! This was the correct tower. Challenge complete! 🎉"
+                  : consolationWin
+                  ? "Nice recovery! You made it to the correct tower in time! Challenge complete! 🎉"
                   : "Whoops! Wrong choice! You can still finish this challenge if you get to the Guaita before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
               {isCorrect ? (
                 "You picked the correct tower!"
-              ) : (
+              ) : !consolationWin ? (
                 <>
                   Reach the top of the correct tower:
                   <strong className="text-primary">
@@ -172,29 +184,18 @@ const GameStatus = ({
                     {towers[correctTower!].name}
                   </strong>
                 </>
-              )}
+              ) : null}
               {isTimerRunning ? (
                 <Timer timeRemaining={timer} setTimeRemaining={setTimer} />
               ) : null}
             </DialogHeader>
-            <DialogFooter>
-              {isCorrect ? (
-                <Button onClick={onReset}>
-                  Play Again <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              ) : showPlayAgain ? (
-                <Button onClick={onReset}>
-                  Play Again <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => setShowPlayAgain(true)}
-                  variant="destructive"
-                >
+            {isTimerRunning ? (
+              <DialogFooter>
+                <Button variant="destructive" onClick={handleConsolationWin}>
                   <Clock className="mr-0.5 h-4 w-4" />I Made It!
                 </Button>
-              )}
-            </DialogFooter>
+              </DialogFooter>
+            ) : null}
           </DialogContent>
         </Dialog>
       );

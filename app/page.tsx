@@ -1,7 +1,6 @@
 import Image from "next/image";
 import jetLagLogo from "@/public/jet-lag.png";
 import Game from "@/components/game";
-import { WelcomeDialog, HelpButton } from "@/components/welcome-dialog";
 
 export default function Home() {
   return (
@@ -10,8 +9,7 @@ export default function Home() {
         <h1 className="sm:text-4xl text-2xl font-medium text-center my-8">
           San Marino Towers Challenge
         </h1>
-        <HelpButton />
-        <WelcomeDialog />
+
         <Game />
       </div>
       <div className="absolute top-0 left-0 sm:p-4 p-3">

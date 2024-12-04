@@ -23,7 +23,7 @@ const Game = () => {
   const [revealedTower, setRevealedTower] = React.useState<number | null>(null);
   const [isTimerRunning, setIsTimerRunning] = React.useState<boolean>(false);
   // 10 minutes
-  const [timer, setTimer] = React.useState<number>(600);
+  const [timer, setTimer] = React.useState<number>(2);
   const [showVerificationDialog, setShowVerificationDialog] =
     React.useState(false);
   const [pendingTowerSelection, setPendingTowerSelection] = React.useState<
@@ -83,15 +83,6 @@ const Game = () => {
     }
   };
 
-  const resetGame = () => {
-    setGameState("initial");
-    setSelectedTower(null);
-    setRevealedTower(null);
-    setIsTimerRunning(false);
-    setTimer(600);
-    setClimbingVerificationNeeded(false);
-  };
-
   const getRemainingTower = () => {
     return [0, 1, 2].find(
       (id) => id !== selectedTower && id !== revealedTower
@@ -140,10 +131,10 @@ const Game = () => {
         remainingTower={getRemainingTower()}
         handleClimbVerification={handleClimbVerification}
         handleFinalClimbVerification={handleFinalClimbVerification}
-        onReset={resetGame}
         isTimerRunning={isTimerRunning}
         timer={timer}
         setTimer={setTimer}
+        setIsTimerRunning={setIsTimerRunning}
       />
     </>
   );
