@@ -31,6 +31,7 @@ const Game = () => {
   >(null);
   const [climbingVerificationNeeded, setClimbingVerificationNeeded] =
     React.useState<boolean>(false);
+  const [win, setWin] = React.useState<boolean>(false);
 
   const handleInitialSelection = (towerId: number) => {
     setPendingTowerSelection(towerId);
@@ -135,6 +136,7 @@ const Game = () => {
         timer={timer}
         setTimer={setTimer}
         setIsTimerRunning={setIsTimerRunning}
+        setWin={setWin}
       />
     </>
   );

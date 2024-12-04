@@ -33,6 +33,7 @@ interface GameStatusProps {
   timer: number;
   setTimer: (_time: number) => void;
   setIsTimerRunning: (_isTimerRunning: boolean) => void;
+  setWin: (_win: boolean) => void;
 }
 
 const GameStatus = ({
@@ -54,6 +55,7 @@ const GameStatus = ({
   const isDialogOpen =
     verificationNeeded || gameState === "revealed" || gameState === "final";
   const [consolationWin, setConsolationWin] = React.useState(false);
+  const [finalDialogOpen, setFinalDialogOpen] = React.useState(true);
 
   const handleConsolationWin = () => {
     if (timer > 0) {
@@ -153,13 +155,17 @@ const GameStatus = ({
 
     if (gameState === "final") {
       const isCorrect = selectedTower === correctTower;
+      const canCloseDialog = isCorrect || consolationWin || timer === 0;
       return (
-        <Dialog open={true}>
-          <DialogContent className={DIALOG_CONTENT_CLASS} hideClose>
+        <Dialog open={finalDialogOpen} onOpenChange={setFinalDialogOpen}>
+          <DialogContent
+            className={DIALOG_CONTENT_CLASS}
+            hideClose={!canCloseDialog}
+          >
             <DialogHeader>
               <DialogTitle
                 className={cn(
-                  "text-2xl -mt-5 mb-3",
+                  "text-2xl -mt-5 mb-3 text-center",
                   isCorrect
                     ? "text-green-500"
                     : consolationWin
@@ -171,12 +177,14 @@ const GameStatus = ({
                   ? "Congratulations! This was the correct tower. Challenge complete! 🎉"
                   : consolationWin
                   ? "Nice recovery! You made it to the correct tower in time! Challenge complete! 🎉"
+                  : timer === 0
+                  ? "Time's up! Challenge failed! ❌"
                   : "Whoops! Wrong choice! You can still finish this challenge if you get to the Guaita before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
               {isCorrect ? (
                 "You picked the correct tower!"
-              ) : !consolationWin ? (
+              ) : !consolationWin && timer > 0 ? (
                 <>
                   Reach the top of the correct tower:
                   <strong className="text-primary">
@@ -185,11 +193,11 @@ const GameStatus = ({
                   </strong>
                 </>
               ) : null}
-              {isTimerRunning ? (
+              {isTimerRunning && timer > 0 ? (
                 <Timer timeRemaining={timer} setTimeRemaining={setTimer} />
               ) : null}
             </DialogHeader>
-            {isTimerRunning ? (
+            {isTimerRunning && timer > 0 ? (
               <DialogFooter>
                 <Button variant="destructive" onClick={handleConsolationWin}>
                   <Clock className="mr-0.5 h-4 w-4" />I Made It!
