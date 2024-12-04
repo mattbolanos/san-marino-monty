@@ -24,7 +24,7 @@ const Game = () => {
   const [revealedTower, setRevealedTower] = React.useState<number | null>(null);
   const [isTimerRunning, setIsTimerRunning] = React.useState<boolean>(false);
   // 10 minutes
-  const [timer, setTimer] = React.useState<number>(2);
+  const [timer, setTimer] = React.useState<number>(600);
   const [showVerificationDialog, setShowVerificationDialog] =
     React.useState(false);
   const [pendingTowerSelection, setPendingTowerSelection] = React.useState<
