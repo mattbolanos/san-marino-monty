@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Clock } from "lucide-react";
-import { type Tower } from "@/lib/types";
+import { GameState, type Tower } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { Timer } from "./timer";
 
 interface GameStatusProps {
-  gameState: string;
+  gameState: GameState;
   verificationNeeded: boolean;
   selectedTower: number | null;
   revealedTower: number | null;
