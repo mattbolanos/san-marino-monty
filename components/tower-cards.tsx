@@ -30,7 +30,7 @@ export const TowerCards = ({
   const gameOver = gameState === "final";
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-1">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-1 mb-6">
       {TOWERS.map((tower) => (
         <Card
           key={tower.id}
