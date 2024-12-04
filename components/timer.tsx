@@ -1,9 +1,9 @@
 "use client";
 
+import * as React from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 import { Clock } from "lucide-react";
-import { useState, useEffect } from "react";
 
 interface TimerProps {
   timeRemaining: number;
@@ -16,13 +16,13 @@ export function Timer({
   setTimeRemaining,
   className,
 }: TimerProps) {
-  const [endTime] = useState(() => {
+  const [endTime] = React.useState(() => {
     const end = new Date();
     end.setSeconds(end.getSeconds() + timeRemaining);
     return end;
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     let lastTick = Date.now();
     const interval = setInterval(() => {
       const now = Date.now();
