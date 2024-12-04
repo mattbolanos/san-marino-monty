@@ -8,6 +8,7 @@ export interface Tower {
 
 export type GameState =
   | "initial"
+  | "verification"
   | "climbing"
   | "revealed"
   | "final"

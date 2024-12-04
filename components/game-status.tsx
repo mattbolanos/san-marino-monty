@@ -12,7 +12,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { DIALOG_CONTENT_CLASS } from "@/app/constants";
+import { DIALOG_CONTENT_CLASS, DIALOG_FOOTER_CLASS } from "@/app/constants";
+import { cn } from "@/lib/utils";
 
 interface GameStatusProps {
   gameState: string;
@@ -49,14 +50,14 @@ const GameStatus = ({
     if (verificationNeeded) {
       return (
         <Dialog open={true}>
-          <DialogContent className={DIALOG_CONTENT_CLASS}>
+          <DialogContent className={DIALOG_CONTENT_CLASS} hideClose>
             <DialogHeader>
-              <DialogTitle>Verification Needed</DialogTitle>
+              <DialogTitle>🧗 Get Climbing!</DialogTitle>
               <DialogDescription>
                 Climb to the top of {towers[selectedTower!].name}!
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter>
+            <DialogFooter className={DIALOG_FOOTER_CLASS}>
               <Button
                 onClick={
                   gameState === "climbing" && revealedTower === null
@@ -66,7 +67,7 @@ const GameStatus = ({
                 }
                 variant="default"
               >
-                I made it to the top!
+                Click when you make it!
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -79,22 +80,37 @@ const GameStatus = ({
         <Dialog open={true}>
           <DialogContent className={DIALOG_CONTENT_CLASS}>
             <DialogHeader>
-              <DialogTitle>
-                {towers[revealedTower!].name} is not the correct tower.
+              <DialogTitle className="mb-0.5">
+                🔍 We&apos;ve discovered something!
               </DialogTitle>
+              <DialogDescription>
+                ❌{" "}
+                <strong className="text-red-500">
+                  {towers[revealedTower!].name}
+                </strong>{" "}
+                is incorrect
+              </DialogDescription>
             </DialogHeader>
-            <div className="py-4">
-              Do you want to stick with {towers[selectedTower!].name} or switch
-              to {towers[remainingTower].name}?
+            <div className="py-0.5 text-center">
+              <p className="mb-1.5">
+                You currently have{" "}
+                <strong className="text-primary">
+                  {towers[selectedTower!].name}
+                </strong>{" "}
+                selected
+              </p>
+              <p>Would you like to:</p>
             </div>
-            <DialogFooter className="flex justify-center gap-4">
+            <DialogFooter
+              className={cn(DIALOG_FOOTER_CLASS, "flex justify-center gap-4")}
+            >
               <Button
                 onClick={() =>
                   handleFinalClimbVerification(towers[selectedTower!].id)
                 }
                 variant="outline"
               >
-                Stick with {towers[selectedTower!].name}
+                Keep {towers[selectedTower!].name}
               </Button>
               <Button
                 onClick={() =>
