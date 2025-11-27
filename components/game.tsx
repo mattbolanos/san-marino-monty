@@ -1,10 +1,9 @@
 "use client";
 
 import * as React from "react";
-import GameStatus from "./game-status";
-import { TowerCards } from "./tower-cards";
-import { GameState } from "@/lib/types";
 import { DIALOG_CONTENT_CLASS, LOCATIONS } from "@/app/constants";
+import BuyMeACoffee from "@/components/buy-me-coffee";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +12,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import BuyMeACoffee from "@/components/buy-me-coffee";
+import type { GameState } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import GameStatus from "./game-status";
+import { TowerCards } from "./tower-cards";
 
 const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
@@ -24,8 +24,8 @@ const Game = () => {
   const [selectedTower, setSelectedTower] = React.useState<number | null>(null);
   const [revealedTower, setRevealedTower] = React.useState<number | null>(null);
   const [isTimerRunning, setIsTimerRunning] = React.useState<boolean>(false);
-  // 10 minutes
-  const [timer, setTimer] = React.useState<number>(600);
+  // 5 minutes
+  const [timer, setTimer] = React.useState<number>(300);
   const [showVerificationDialog, setShowVerificationDialog] =
     React.useState(false);
   const [pendingTowerSelection, setPendingTowerSelection] = React.useState<

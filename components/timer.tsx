@@ -1,9 +1,9 @@
 "use client";
 
+import { ClockIcon } from "lucide-react";
 import * as React from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
-import { Clock } from "lucide-react";
 
 interface TimerProps {
   timeRemaining: number;
@@ -62,7 +62,7 @@ export function Timer({
       <Alert variant="destructive" className="py-1">
         <AlertDescription className="flex flex-col items-center py-0">
           <div className="flex items-center">
-            <Clock className="h-6 w-6 mr-2" />
+            <ClockIcon className="h-6 w-6 mr-2" />
             <span className="font-bold text-lg">
               {formatTime(timeRemaining)}
             </span>
