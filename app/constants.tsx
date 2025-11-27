@@ -22,4 +22,4 @@ export const LOCATIONS: Location[] = [
 ];
 
 export const DIALOG_CONTENT_CLASS =
-  "w-11/12 max-w-lg sm:mx-auto p-8 sm:p-10 rounded-xl sm:rounded-2xl gap-6";
+  "w-11/12 max-w-xl sm:mx-auto p-8 sm:p-10 rounded-xl sm:rounded-2xl gap-6";

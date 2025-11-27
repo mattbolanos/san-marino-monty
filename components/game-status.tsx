@@ -117,7 +117,7 @@ const GameStatus = ({
               <DialogTitle className="text-2xl sm:text-3xl mb-4">
                 🔍 We&apos;ve discovered something!
               </DialogTitle>
-              <DialogDescription className="text-lg bg-destructive/10 p-4 rounded-lg text-destructive-foreground">
+              <DialogDescription className="text-lg w-full text-center bg-destructive/10 p-4 rounded-lg text-destructive-foreground">
                 ❌{" "}
                 <strong className="text-destructive">
                   {towers[revealedTower!].name}
