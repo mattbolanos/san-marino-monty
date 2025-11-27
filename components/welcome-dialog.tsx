@@ -26,11 +26,11 @@ const WelcomeContent = ({ open, onOpenChange }: WelcomeDialogProps) => {
       >
         <DialogHeader>
           <DialogTitle className="sm:text-2xl text-lg font-bold sm:mb-4 mb-2">
-            The San Marino Towers Challenge
+            The Baguashan Challenge
           </DialogTitle>
           <span className="text-muted-foreground sm:mb-4 mb-2 block sm:text-base text-sm">
             Welcome to our game! This challenge is complete when you get to the
-            correct tower... but which one is it? Select a tower, then follow
+            correct location... but which one is it? Select a location, then follow
             the instructions
           </span>
         </DialogHeader>

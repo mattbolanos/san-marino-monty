@@ -1,23 +1,23 @@
-import guaitaLogo from "@/public/guaita.jpg";
-import cestaLogo from "@/public/cesta.jpg";
-import montaleLogo from "@/public/montale.jpg";
-import { Tower } from "@/lib/types";
+import type { Location } from "@/lib/types";
+import greatBuddhaImg from "@/public/great-buddha.jpg";
+import northPagodaImg from "@/public/north-pagoda.jpg";
+import southPagodaImg from "@/public/south-pagoda.jpg";
 
-export const TOWERS: Tower[] = [
+export const LOCATIONS: Location[] = [
   {
     id: 0,
-    name: "The Guaita",
-    image: guaitaLogo,
+    name: "Great Buddha Statue",
+    image: greatBuddhaImg,
   },
   {
     id: 1,
-    name: "The Cesta",
-    image: cestaLogo,
+    name: "North Pagoda",
+    image: northPagodaImg,
   },
   {
     id: 2,
-    name: "The Montale",
-    image: montaleLogo,
+    name: "South Pagoda",
+    image: southPagodaImg,
   },
 ];
 

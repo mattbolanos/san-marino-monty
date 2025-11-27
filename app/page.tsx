@@ -8,7 +8,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-gradient-to-r from-background to-accent/30 p-4 font-[family-name:var(--font-geist-sans)] pt-10">
       <div className="container mx-auto">
         <h1 className="sm:text-4xl text-2xl font-medium text-center my-8">
-          San Marino Towers Challenge
+          Baguashan Challenge
         </h1>
         <WelcomeDialog />
         <HelpButton />

@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "San Marino Towers Challenge",
-  description: "San Marino Towers Challenge - Made for Jet Lag: The Game",
+  title: "Baguashan Challenge",
+  description: "Baguashan Challenge - Made for Jet Lag: The Game",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },

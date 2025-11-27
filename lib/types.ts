@@ -1,6 +1,6 @@
 import { type StaticImageData } from "next/image";
 
-export interface Tower {
+export interface Location {
   id: number;
   name: string;
   image: StaticImageData;

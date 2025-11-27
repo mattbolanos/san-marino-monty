@@ -1,9 +1,9 @@
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { GameState } from "@/lib/types";
-import Image from "next/image";
 import { Landmark } from "lucide-react";
-import { TOWERS } from "@/app/constants";
+import Image from "next/image";
+import { LOCATIONS } from "@/app/constants";
+import type { GameState } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface TowerCardsProps {
   selectedTower: number | null;
@@ -31,7 +31,7 @@ export const TowerCards = ({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-1 mb-6">
-      {TOWERS.map((tower) => (
+      {LOCATIONS.map((tower) => (
         <Card
           key={tower.id}
           className={cn(

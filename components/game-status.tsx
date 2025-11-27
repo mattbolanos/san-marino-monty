@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Clock } from "lucide-react";
-import { GameState, type Tower } from "@/lib/types";
+import { GameState, type Location } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +22,7 @@ interface GameStatusProps {
   selectedTower: number | null;
   revealedTower: number | null;
   correctTower: number | null;
-  towers: Tower[];
+  towers: Location[];
   remainingTower: number;
   handleClimbVerification: () => void;
   handleFinalClimbVerification: (
@@ -184,12 +184,12 @@ const GameStatus = ({
                 )}
               >
                 {isCorrect
-                  ? "Congratulations! This was the correct tower. Challenge complete! 🎉"
+                  ? "Congratulations! This was the correct location. Challenge complete! 🎉"
                   : consolationWin
-                  ? "Nice recovery! You made it to the correct tower in time! Challenge complete! 🎉"
+                  ? "Nice recovery! You made it to the correct location in time! Challenge complete! 🎉"
                   : timer === 0
                   ? "Time's up! Challenge failed! ❌"
-                  : "Whoops! Wrong choice! You can still finish this challenge if you get to the Guaita before this timer runs out. If you don't, challenge failed"}
+                  : "Whoops! Wrong choice! You can still finish this challenge if you get to the Great Buddha Statue before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
               {isCorrect ? null : !consolationWin && timer > 0 ? (

@@ -4,7 +4,7 @@ import * as React from "react";
 import GameStatus from "./game-status";
 import { TowerCards } from "./tower-cards";
 import { GameState } from "@/lib/types";
-import { DIALOG_CONTENT_CLASS, TOWERS } from "@/app/constants";
+import { DIALOG_CONTENT_CLASS, LOCATIONS } from "@/app/constants";
 import {
   Dialog,
   DialogContent,
@@ -104,10 +104,10 @@ const Game = () => {
         <DialogContent className={DIALOG_CONTENT_CLASS}>
           <DialogHeader>
             <DialogTitle>
-              Confirm {TOWERS[pendingTowerSelection ?? 0].name}
+              Confirm {LOCATIONS[pendingTowerSelection ?? 0].name}
             </DialogTitle>
             <DialogDescription>
-              Are you sure you want to select this tower?
+              Are you sure you want to select this location?
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -141,7 +141,7 @@ const Game = () => {
         onFinalSelect={handleFinalSelection}
       />
       <GameStatus
-        towers={TOWERS}
+        towers={LOCATIONS}
         gameState={gameState}
         verificationNeeded={climbingVerificationNeeded}
         selectedTower={selectedTower}
