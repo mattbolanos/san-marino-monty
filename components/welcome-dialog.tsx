@@ -24,17 +24,17 @@ const WelcomeContent = ({ open, onOpenChange }: WelcomeDialogProps) => {
         aria-describedby="welcome-dialog-content"
         aria-description="Welcome dialog content"
       >
-        <DialogHeader>
-          <DialogTitle className="sm:text-2xl text-lg font-bold sm:mb-4 mb-2">
+        <DialogHeader className="text-center sm:text-center">
+          <DialogTitle className="text-2xl sm:text-3xl font-bold mb-4">
             The Baguashan Challenge
           </DialogTitle>
-          <span className="text-muted-foreground sm:mb-4 mb-2 block sm:text-base text-sm">
+          <span className="text-muted-foreground mb-6 block text-base sm:text-lg leading-relaxed">
             Welcome to our game! This challenge is complete when you get to the
             correct location... but which one is it? Select a location, then follow
-            the instructions
+            the instructions.
           </span>
         </DialogHeader>
-        <Button onClick={() => onOpenChange(false)}>Let&apos;s play!</Button>
+        <Button onClick={() => onOpenChange(false)} className="w-full py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">Let&apos;s play!</Button>
       </DialogContent>
     </Dialog>
   );

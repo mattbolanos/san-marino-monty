@@ -102,19 +102,26 @@ const Game = () => {
         onOpenChange={setShowVerificationDialog}
       >
         <DialogContent className={DIALOG_CONTENT_CLASS}>
-          <DialogHeader>
-            <DialogTitle>
+          <DialogHeader className="text-center">
+            <DialogTitle className="text-2xl sm:text-3xl mb-4">
               Confirm {LOCATIONS[pendingTowerSelection ?? 0].name}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-lg">
               Are you sure you want to select this location?
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={handleVerificationCancel}>
+          <DialogFooter className="sm:justify-center w-full gap-3 flex-col-reverse sm:flex-row">
+            <Button
+              variant="outline"
+              onClick={handleVerificationCancel}
+              className="w-full sm:w-auto py-6"
+            >
               Cancel
             </Button>
-            <Button onClick={handleVerificationConfirm}>
+            <Button
+              onClick={handleVerificationConfirm}
+              className="w-full sm:w-auto py-6"
+            >
               Confirm Selection
             </Button>
           </DialogFooter>

@@ -1,4 +1,3 @@
-import { Landmark } from "lucide-react";
 import Image from "next/image";
 import { LOCATIONS } from "@/app/constants";
 import type { GameState } from "@/lib/types";
@@ -30,40 +29,42 @@ export const TowerCards = ({
   const gameOver = gameState === "final";
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-1 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 mb-8 w-full max-w-6xl mx-auto">
       {LOCATIONS.map((tower) => (
         <Card
           key={tower.id}
           className={cn(
+            "overflow-hidden border-0 shadow-md transition-all duration-300",
             !gameOver &&
               selectedTower === null &&
-              "hover:ring-2 hover:ring-chart-1/50",
-            "transition-all",
+              "hover:shadow-xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/20",
             !gameOver &&
               revealedTower === tower.id &&
-              "opacity-50 cursor-not-allowed",
+              "opacity-40 grayscale cursor-not-allowed",
             !gameOver && "cursor-pointer",
             gameOver && "cursor-not-allowed",
-            !gameOver && selectedTower === tower.id && "ring-2 ring-chart-1"
+            !gameOver &&
+              selectedTower === tower.id &&
+              "ring-4 ring-primary shadow-2xl scale-105"
           )}
           onClick={() => handleTowerClick(tower.id)}
         >
-          <CardHeader>
-            <CardTitle className="text-lg">
-              <Landmark className="h-5 w-5 inline-block mr-2" />
+          <CardContent className="p-0">
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <Image
+                src={tower.image}
+                alt={tower.name}
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-110"
+                priority
+              />
+            </div>
+          </CardContent>
+          <CardHeader className="p-5 text-center">
+            <CardTitle className="text-xl font-bold tracking-tight">
               {tower.name}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <Image
-              src={tower.image}
-              alt={tower.name}
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </CardContent>
         </Card>
       ))}
     </div>

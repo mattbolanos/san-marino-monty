@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { Button } from "@/components/ui/button";
 import { Clock } from "lucide-react";
-import { GameState, type Location } from "@/lib/types";
+import * as React from "react";
+import { DIALOG_CONTENT_CLASS } from "@/app/constants";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { DIALOG_CONTENT_CLASS } from "@/app/constants";
+import type { GameState, Location } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Timer } from "./timer";
 
@@ -75,13 +75,19 @@ const GameStatus = ({
       return (
         <Dialog open={true}>
           <DialogContent className={DIALOG_CONTENT_CLASS} hideClose>
-            <DialogHeader>
-              <DialogTitle>🧗 Get Climbing!</DialogTitle>
-              <DialogDescription>
-                Climb to the top of {towers[selectedTower!].name}!
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl sm:text-3xl mb-2">
+                🧗 Get Climbing!
+              </DialogTitle>
+              <DialogDescription className="text-lg">
+                Climb to the top of{" "}
+                <span className="font-semibold text-primary">
+                  {towers[selectedTower!].name}
+                </span>
+                !
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter>
+            <DialogFooter className="sm:justify-center w-full">
               <Button
                 onClick={
                   gameState === "climbing" && revealedTower === null
@@ -93,6 +99,7 @@ const GameStatus = ({
                         )
                 }
                 variant="default"
+                className="w-full sm:w-auto text-lg py-6"
               >
                 Click when you make it!
               </Button>
@@ -106,29 +113,29 @@ const GameStatus = ({
       return (
         <Dialog open={true}>
           <DialogContent className={DIALOG_CONTENT_CLASS}>
-            <DialogHeader>
-              <DialogTitle className="mb-0.5">
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl sm:text-3xl mb-4">
                 🔍 We&apos;ve discovered something!
               </DialogTitle>
-              <DialogDescription>
+              <DialogDescription className="text-lg bg-destructive/10 p-4 rounded-lg text-destructive-foreground">
                 ❌{" "}
-                <strong className="text-red-500">
+                <strong className="text-destructive">
                   {towers[revealedTower!].name}
                 </strong>{" "}
                 is incorrect
               </DialogDescription>
             </DialogHeader>
-            <div className="py-0.5 text-center">
-              <p className="mb-1.5">
+            <div className="py-4 text-center space-y-4">
+              <p className="text-lg">
                 You currently have{" "}
-                <strong className="text-primary">
+                <strong className="text-primary text-xl">
                   {towers[selectedTower!].name}
                 </strong>{" "}
                 selected
               </p>
-              <p>Would you like to:</p>
+              <p className="text-muted-foreground">Would you like to:</p>
             </div>
-            <DialogFooter className="flex sm:justify-center">
+            <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-center w-full">
               <Button
                 onClick={() =>
                   handleFinalClimbVerification(
@@ -137,6 +144,7 @@ const GameStatus = ({
                   )
                 }
                 variant="outline"
+                className="w-full sm:w-auto py-6"
               >
                 Keep {towers[selectedTower!].name}
               </Button>
@@ -148,6 +156,7 @@ const GameStatus = ({
                   )
                 }
                 variant="default"
+                className="w-full sm:w-auto py-6"
               >
                 Switch to {towers[remainingTower].name}
               </Button>
@@ -175,7 +184,7 @@ const GameStatus = ({
             <DialogHeader>
               <DialogTitle
                 className={cn(
-                  "text-2xl -mt-5 mb-3 text-center",
+                  "text-2xl  mb-3 text-center",
                   isCorrect
                     ? "text-green-500"
                     : consolationWin
