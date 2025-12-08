@@ -1,15 +1,15 @@
 "use client";
 
+import { CircleHelp } from "lucide-react";
+import { useState } from "react";
+import { DIALOG_CONTENT_CLASS } from "@/app/constants";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { CircleHelp } from "lucide-react";
-import { DIALOG_CONTENT_CLASS } from "@/app/constants";
 
 interface WelcomeDialogProps {
   open: boolean;
@@ -30,11 +30,16 @@ const WelcomeContent = ({ open, onOpenChange }: WelcomeDialogProps) => {
           </DialogTitle>
           <span className="text-muted-foreground mb-6 block text-base sm:text-lg leading-relaxed">
             Welcome to our game! This challenge is complete when you get to the
-            correct location... but which one is it? Select a location, then follow
-            the instructions.
+            correct location... but which one is it? Select a location, then
+            follow the instructions.
           </span>
         </DialogHeader>
-        <Button onClick={() => onOpenChange(false)} className="w-full py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">Let&apos;s play!</Button>
+        <Button
+          onClick={() => onOpenChange(false)}
+          className="w-full py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
+        >
+          Let&apos;s play!
+        </Button>
       </DialogContent>
     </Dialog>
   );

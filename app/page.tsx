@@ -1,7 +1,7 @@
 import Image from "next/image";
-import jetLagLogo from "@/public/jet-lag.png";
 import Game from "@/components/game";
-import { WelcomeDialog, HelpButton } from "@/components/welcome-dialog";
+import { HelpButton, WelcomeDialog } from "@/components/welcome-dialog";
+import jetLagLogo from "@/public/jet-lag.png";
 
 export default function Home() {
   return (

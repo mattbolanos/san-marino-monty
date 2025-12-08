@@ -127,6 +127,13 @@ const Game = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <TowerCards
+        selectedTower={selectedTower}
+        revealedTower={revealedTower}
+        gameState={gameState}
+        onInitialSelect={handleInitialSelection}
+        onFinalSelect={handleFinalSelection}
+      />
       {showFinalText ? (
         <div className="inset-0 flex items-center justify-center z-50  mb-10 flex-col gap-4">
           <h1
@@ -140,13 +147,6 @@ const Game = () => {
           <BuyMeACoffee />
         </div>
       ) : null}
-      <TowerCards
-        selectedTower={selectedTower}
-        revealedTower={revealedTower}
-        gameState={gameState}
-        onInitialSelect={handleInitialSelection}
-        onFinalSelect={handleFinalSelection}
-      />
       <GameStatus
         towers={LOCATIONS}
         gameState={gameState}
