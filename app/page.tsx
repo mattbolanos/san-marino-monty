@@ -5,7 +5,7 @@ import jetLagLogo from "@/public/jet-lag.png";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-background to-muted/50 p-4 font-[family-name:var(--font-geist-sans)] pt-10 sm:pt-20">
+    <main className="relative min-h-screen bg-gradient-to-b from-background to-muted/50 p-4 font-[family-name:var(--font-geist-sans)] pt-20">
       <div className="container mx-auto max-w-5xl">
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 drop-shadow-sm">
           Baguashan Challenge
