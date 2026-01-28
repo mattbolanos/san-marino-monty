@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Game from "@/components/game";
+import { Game } from "@/components/game";
 import { HelpButton, WelcomeDialog } from "@/components/welcome-dialog";
 import jetLagLogo from "@/public/jet-lag.png";
 

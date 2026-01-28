@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { DIALOG_CONTENT_CLASS, LOCATIONS } from "@/app/constants";
-import BuyMeACoffee from "@/components/buy-me-coffee";
+import { BuyMeACoffee } from "@/components/buy-me-coffee";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import GameStatus from "./game-status";
 import { TowerCards } from "./tower-cards";
 
-const Game = () => {
+export const Game = () => {
   const [gameState, setGameState] = React.useState<GameState>("initial");
   // per client request, Guaita is always the correct tower
   const correctTower: number = 0;
@@ -168,5 +168,3 @@ const Game = () => {
     </>
   );
 };
-
-export default Game;
