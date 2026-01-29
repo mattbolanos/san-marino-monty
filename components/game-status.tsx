@@ -77,10 +77,14 @@ const GameStatus = ({
           <DialogContent className={DIALOG_CONTENT_CLASS} hideClose>
             <DialogHeader className="text-center">
               <DialogTitle className="text-2xl sm:text-3xl mb-2">
-                🏃 Go Go Go!
+                {towers[selectedTower!].id === 0
+                  ? "🧗 Get Climbing!"
+                  : "🏃 Go Go Go!"}
               </DialogTitle>
               <DialogDescription className="text-lg">
-                Go to{" "}
+                {towers[selectedTower!].id === 0
+                  ? "Climb to the top of"
+                  : "Go to"}{" "}
                 <span className="font-semibold text-primary">
                   {towers[selectedTower!].name}
                 </span>
@@ -203,7 +207,7 @@ const GameStatus = ({
 
               {isCorrect ? null : !consolationWin && timer > 0 ? (
                 <>
-                  Reach the correct location:
+                  Reach the top of the correct tower:
                   <strong className="text-primary">
                     {" "}
                     {towers[correctTower!].name}
