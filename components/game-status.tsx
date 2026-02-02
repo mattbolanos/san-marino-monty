@@ -202,7 +202,7 @@ const GameStatus = ({
                   ? "Nice recovery! You made it to the correct location in time! Challenge complete! 🎉"
                   : timer === 0
                   ? "Time's up! Challenge failed! ❌"
-                  : "Whoops! Wrong choice! You can still finish this challenge if you get to the Great Buddha Statue before this timer runs out. If you don't, challenge failed"}
+                  : "Whoops! Wrong choice! You can still finish this challenge if you get to the top of the Great Buddha Statue before this timer runs out. If you don't, challenge failed"}
               </DialogTitle>
 
               {isCorrect ? null : !consolationWin && timer > 0 ? (
